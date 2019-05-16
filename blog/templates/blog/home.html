@@ -1,0 +1,50 @@
+{% extends 'blog/layout.html' %}
+
+{% block board %}
+<header >
+</header>
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+              <th>글번호</th>
+              <th>제목</th>
+              <th>내용</th>
+              <th>날짜</th>
+              <th>수정</th>
+              <th>삭제</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for blog in blogs.all %}
+          <tr>
+            <td>{{ blog.pk }}</td>
+            <td>{{ blog.title }}</td>
+            <td>{{ blog.body }}</td>
+            <td>{{ blog.pub_date }}</td>
+            <td style="text-align:center">
+              <a href="{%url 'edit' pk=blog.pk %}" class="btn btn-success btn-circle">
+                <i class="fas fa-check"></i>
+              </a>
+            </td>
+            <td style="text-align:center">
+                <a href="{%url 'remove' pk=blog.pk%}" class="btn btn-danger btn-circle">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>글번호</th>
+            <th>제목</th>
+            <th>내용</th>
+            <th>날짜</th>
+            <th>수정</th>
+            <th>삭제</th>
+          </tr>
+        </tfoot>
+
+      </table>
+
+{% endblock %}
